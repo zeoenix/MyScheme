@@ -15,11 +15,11 @@ function App() {
     if (currentTitle < titles.length) {
       const timer = setTimeout(() => {
         setCurrentTitle(prev => prev + 1);
-      }, 4000); // Show each title for 4 seconds
+      }, 4000);
 
       return () => clearTimeout(timer);
     }
-  }, [currentTitle]);
+  }, [currentTitle, titles.length]);
 
   return (
     <div className="container">

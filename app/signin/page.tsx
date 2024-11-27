@@ -58,7 +58,7 @@ export default function SignIn() {
             <Button type="submit" className="w-full">Sign In</Button>
           </form>
           <p className="mt-4 text-center text-sm">
-            Don't have an account? <Link href="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+            Don&apos;t have an account? <Link href="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
           </p>
         </CardContent>
       </Card>
