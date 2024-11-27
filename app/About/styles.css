@@ -1,0 +1,85 @@
+.container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34; /* Dark background for contrast */
+}
+
+.rgb-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #f00, #0f0, #00f);
+    background-size: 300% 300%;
+    animation: rgb-gradient 10s ease-in-out infinite;
+    z-index: 0; /* Background behind everything */
+}
+
+.rgb-grad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 0, 0, 0.2), rgba(0, 255, 0, 0.2), rgba(0, 0, 255, 0.2));
+    background-size: 300% 300%;
+    animation: rgb-gradient 10s ease-in-out infinite;
+    filter: blur(20px); /* More blur for a softer background */
+    z-index: 1; /* Blur background behind text */
+}
+
+.text-container {
+    position: relative;
+    z-index: 2; /* Ensure text is above the background */
+    text-align: center;
+    color: #fff; /* White text for contrast */
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+.title {
+    opacity: 1; /* Always visible */
+    margin: 0; /* Remove default margins */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+}
+
+.final-text {
+    margin-top: 20px; /* Space between titles and final text */
+}
+
+h1 {
+    font-size: 48px; /* Main title size */
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Soft glow effect */
+}
+
+h2 {
+    font-size: 36px; /* Institution title size */
+    font-weight: normal;
+    margin-top: 10px; /* Space between titles */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Soft glow effect */
+}
+
+h3 {
+    font-size: 24px; /* Floating text size */
+    font-weight: normal;
+    margin-top: 10px; /* Space between titles */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Soft glow effect */
+}
+
+@keyframes rgb-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

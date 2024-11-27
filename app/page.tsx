@@ -1,101 +1,116 @@
-import Image from "next/image";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Search, GraduationCap } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import Link from 'next/link'
+import { studentSchemes } from '@/data/studentSchemes'
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Select a few schemes to display on the homepage
+  const featuredSchemes = studentSchemes.slice(0, 3)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  return (
+    <div className="container mx-auto p-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Search for Scholarships</CardTitle>
+          <CardDescription>Find scholarships that match your criteria</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Input placeholder="Search..." />
+            <Button>
+              <Search className="mr-2 h-4 w-4" /> Search
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6 bg-white/80 backdrop-blur-md">
+        <CardHeader>
+          <CardTitle>International Scholarships</CardTitle>
+          <CardDescription>Refine your search with specific filters</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-4">
+            <div>
+              <Label htmlFor="country">Country</Label>
+              <Select>
+                <SelectTrigger id="country">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="IN">India</SelectItem>
+                  <SelectItem value="US">United States</SelectItem>
+                  <SelectItem value="CA">Canada</SelectItem>
+                  <SelectItem value="AS">Australia</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="amount">Amount</Label>
+              <Select>
+                <SelectTrigger id="amount">
+                  <SelectValue placeholder="Select amount" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1000000">Less than 1,000,000 INR</SelectItem>
+                  <SelectItem value="5000000">Less than 5,000,000 INR</SelectItem>
+                  <SelectItem value="0">Fully Funded </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="deadline">Deadline</Label>
+              <Select>
+                <SelectTrigger id="deadline">
+                  <SelectValue placeholder="Select deadline" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2024-12-31">Winter Intake (2024-12-31)</SelectItem>
+                  <SelectItem value="2025-02-30">Automn Intake (2025-02-30)</SelectItem>
+                  <SelectItem value="2025-09-31">Summer Intake (2025-09-31)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6 bg-white/80 backdrop-blur-md">
+        <CardHeader>
+          <CardTitle>Featured Student Schemes</CardTitle>
+          <CardDescription>Explore some of our popular educational opportunities</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featuredSchemes.map((scheme) => (
+              <Card key={scheme.id} className="bg-white">
+                <CardHeader>
+                  <CardTitle className="text-lg">{scheme.name}</CardTitle>
+                  <CardDescription>Age: {scheme.ageRange.min}-{scheme.ageRange.max} | Gender: {scheme.gender}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4">{scheme.description}</p>
+                  <Link href={`/find-schemes?id=${scheme.id}`}>
+                    <Button variant="outline" className="w-full">Learn More</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-4 text-center">
+            <Link href="/find-schemes">
+              <Button>
+                <GraduationCap className="mr-2 h-4 w-4" /> View All Student Schemes
+              </Button>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
+
